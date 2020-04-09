@@ -22,6 +22,7 @@ $(document).ready(function() {
 
 	var urlRegex = /https?:\/\/([^\/]+)/,
 		$urlInput = $('#jsloader-url'),
+		$url2Input = $('#jsloader-url2'),
 		$textarea = $('#jsloader-snippet'),
 		$section = $('#jsloader-section'),
 		$saveButton = $section.find('button'),
@@ -33,9 +34,11 @@ $(document).ready(function() {
 		var selector = '#jsloader-message',
 			snippetValue = $textarea.val(),
 			urlValue = $urlInput.val();
+			url2Value = $url2Input.val();
 
 		$textarea.prop('disabled', true);
 		$urlInput.prop('disabled', true);
+		$url2Input.prop('disabled', true);
 		OC.msg.startSaving(selector);
 
 		OCP.AppConfig.setValue('jsloader', 'snippet', snippetValue, {
@@ -52,10 +55,21 @@ $(document).ready(function() {
 						OC.msg.finishedError(selector, t('jsloader', 'Error while saving'));
 					}
 				});
+				OCP.AppConfig.setValue('jsloader', 'url2', url2Value, {
+					success: function(){
+						$url2Input.prop('disabled', false);
+						OC.msg.finishedSuccess(selector, t('settings', 'Saved'));
+					},
+					error: function(){
+						$url2Input.prop('disabled', false);
+						OC.msg.finishedError(selector, t('jsloader', 'Error while saving'));
+					}
+				});
 			},
 			error: function(){
 				$textarea.prop('disabled', false);
 				$urlInput.prop('disabled', false);
+				$url2Input.prop('disabled', false);
 				OC.msg.finishedError(selector, t('jsloader', 'Error while saving'));
 			}
 		});
@@ -81,4 +95,8 @@ $(document).ready(function() {
 	$urlInput.on('change', function() {
 		$saveButton.prop('disabled', false);
 	})
+	$url2Input.on('change', function() {
+		$saveButton.prop('disabled', false);
+	})
 });
+

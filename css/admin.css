@@ -26,6 +26,12 @@
 	width: 100%;
 }
 
+#jsloader-url2 {
+	display: block;
+	max-width: 550px;
+	width: 100%;
+}
+
 #jsloader-snippet {
 	height: 200px;
 }

@@ -55,6 +55,7 @@ class Admin implements ISettings {
 		$parameters = [
 			'snippet'     => $this->config->getAppValue('jsloader', 'snippet', ''),
 			'url'         => $this->config->getAppValue('jsloader', 'url', ''),
+			'url2'         => $this->config->getAppValue('jsloader', 'url2', ''),
 			'cachebuster' => $this->config->getAppValue('jsloader', 'cachebuster', '0'),
 		];
 

@@ -52,4 +52,14 @@ if ($snippet !== '') {
 		$policy->addAllowedConnectDomain($url);
 		$CSPManager->addDefaultPolicy($policy);
 	}
+
+	$url2 = $config->getAppValue('jsloader', 'url2');
+	if ($url2 !== '') {
+		$CSPManager = \OC::$server->getContentSecurityPolicyManager();
+		$policy = new ContentSecurityPolicy();
+		$policy->addAllowedScriptDomain($url2);
+		$policy->addAllowedImageDomain($url2);
+		$policy->addAllowedConnectDomain($url2);
+		$CSPManager->addDefaultPolicy($policy);
+	}
 }
